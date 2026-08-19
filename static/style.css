@@ -1,0 +1,706 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #f4f6f8;
+
+    color:
+        #222;
+}
+
+
+/* ========================================================
+   CONTENEDOR
+   ======================================================== */
+
+.contenedor {
+
+    width: 92%;
+
+    max-width: 1000px;
+
+    margin:
+        40px auto 70px;
+}
+
+
+/* ========================================================
+   ENCABEZADO
+   ======================================================== */
+
+header {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        35px;
+}
+
+
+header h1 {
+
+    margin:
+        0 0 8px;
+
+    font-size:
+        46px;
+}
+
+
+header p {
+
+    margin: 0;
+
+    color:
+        #666;
+
+    font-size:
+        18px;
+}
+
+
+/* ========================================================
+   TARJETAS GENERALES
+   ======================================================== */
+
+.lista,
+.resultados,
+.mi-compra {
+
+    background:
+        white;
+
+    padding:
+        30px;
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0 4px 18px
+        rgba(0, 0, 0, 0.08);
+
+    margin-bottom:
+        25px;
+}
+
+
+.lista h2,
+.resultados h2,
+.mi-compra h2 {
+
+    margin-top:
+        0;
+}
+
+
+/* ========================================================
+   FORMULARIO
+   ======================================================== */
+
+.ayuda,
+.encabezado-resultados p,
+.mi-compra-header p {
+
+    color:
+        #666;
+
+    line-height:
+        1.5;
+}
+
+
+textarea {
+
+    width:
+        100%;
+
+    min-height:
+        180px;
+
+    resize:
+        vertical;
+
+    padding:
+        16px;
+
+    border:
+        1px solid #ccc;
+
+    border-radius:
+        10px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.6;
+
+    outline:
+        none;
+}
+
+
+textarea:focus {
+
+    border-color:
+        #777;
+}
+
+
+button {
+
+    width:
+        100%;
+
+    margin-top:
+        15px;
+
+    padding:
+        15px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        #222;
+
+    color:
+        white;
+
+    font-size:
+        17px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+}
+
+
+button:hover {
+
+    opacity:
+        0.85;
+}
+
+
+/* ========================================================
+   GRUPO DE PRODUCTO
+   ======================================================== */
+
+.producto-grupo {
+
+    margin-top:
+        22px;
+
+    padding:
+        20px;
+
+    border:
+        1px solid #e1e4e8;
+
+    border-radius:
+        14px;
+}
+
+
+/* ========================================================
+   SOLICITUD
+   ======================================================== */
+
+.solicitud {
+
+    margin-bottom:
+        15px;
+
+    font-size:
+        20px;
+
+    font-weight:
+        bold;
+}
+
+
+/* ========================================================
+   OPCIONES
+   ======================================================== */
+
+.opciones {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+}
+
+
+.opcion {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    padding:
+        16px;
+
+    border:
+        2px solid #e1e4e8;
+
+    border-radius:
+        12px;
+
+    background:
+        #fafbfc;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.15s ease;
+}
+
+
+.opcion:hover {
+
+    border-color:
+        #999;
+
+    transform:
+        translateY(-1px);
+}
+
+
+.opcion.seleccionada {
+
+    border-color:
+        #222;
+
+    background:
+        #f2f4f6;
+
+    box-shadow:
+        0 3px 10px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+.opcion.recomendada {
+
+    border-color:
+        #777;
+}
+
+
+/* ========================================================
+   CHECK
+   ======================================================== */
+
+.check {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    min-width:
+        30px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        2px solid #bbb;
+
+    border-radius:
+        50%;
+
+    font-weight:
+        bold;
+
+    font-size:
+        18px;
+}
+
+
+.seleccionada .check {
+
+    border-color:
+        #222;
+
+    background:
+        #222;
+
+    color:
+        white;
+}
+
+
+/* ========================================================
+   INFORMACIÓN
+   ======================================================== */
+
+.opcion-info {
+
+    flex:
+        1;
+}
+
+
+.opcion-supermercado {
+
+    font-size:
+        13px;
+
+    color:
+        #777;
+
+    margin-bottom:
+        3px;
+}
+
+
+.opcion-nombre {
+
+    font-size:
+        17px;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.4;
+}
+
+
+.opcion-aproximacion {
+
+    margin-top:
+        4px;
+
+    color:
+        #777;
+
+    font-size:
+        13px;
+}
+
+
+.recomendado {
+
+    display:
+        inline-block;
+
+    margin-top:
+        8px;
+
+    padding:
+        5px 9px;
+
+    border-radius:
+        20px;
+
+    background:
+        #ececec;
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+}
+
+
+/* ========================================================
+   PRECIO
+   ======================================================== */
+
+.opcion-precio {
+
+    white-space:
+        nowrap;
+
+    font-size:
+        21px;
+
+    font-weight:
+        bold;
+}
+
+
+/* ========================================================
+   SIN OPCIONES
+   ======================================================== */
+
+.sin-opciones {
+
+    padding:
+        15px;
+
+    background:
+        #f4f6f8;
+
+    border-radius:
+        10px;
+
+    color:
+        #666;
+}
+
+
+/* ========================================================
+   MI COMPRA
+   ======================================================== */
+
+.mi-compra {
+
+    position:
+        relative;
+}
+
+
+.lista-final {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+}
+
+
+.fila-compra {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        15px;
+
+    border-radius:
+        10px;
+
+    background:
+        #f4f6f8;
+}
+
+
+.fila-compra div {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        3px;
+}
+
+
+.fila-compra span {
+
+    font-size:
+        15px;
+}
+
+
+.fila-compra small {
+
+    color:
+        #777;
+
+    font-size:
+        13px;
+}
+
+
+.fila-compra > strong {
+
+    white-space:
+        nowrap;
+}
+
+
+/* ========================================================
+   RESUMEN FINAL
+   ======================================================== */
+
+.resumen-final {
+
+    margin-top:
+        20px;
+
+    padding-top:
+        20px;
+
+    border-top:
+        1px solid #ddd;
+}
+
+
+.resumen-linea {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        12px;
+
+    color:
+        #666;
+}
+
+
+.resumen-linea.total {
+
+    color:
+        #222;
+
+    font-size:
+        22px;
+
+    font-weight:
+        bold;
+}
+
+
+.resumen-ahorro {
+
+    margin-top:
+        18px;
+
+    padding:
+        15px;
+
+    border-radius:
+        10px;
+
+    background:
+        #f0f7f0;
+
+    text-align:
+        center;
+
+    font-size:
+        16px;
+}
+
+
+.resumen-ahorro strong {
+
+    font-size:
+        20px;
+}
+
+
+/* ========================================================
+   ERROR
+   ======================================================== */
+
+.error {
+
+    margin-top:
+        15px;
+
+    padding:
+        12px;
+
+    background:
+        #ffe9e9;
+
+    color:
+        #a00000;
+
+    border-radius:
+        8px;
+}
+
+
+/* ========================================================
+   RESPONSIVE
+   ======================================================== */
+
+@media (max-width: 700px) {
+
+    .opcion {
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .opcion-precio {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .fila-compra {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .fila-compra > strong {
+
+        align-self:
+            flex-end;
+
+    }
+
+}

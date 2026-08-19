@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Esperancita
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='style.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<main class="contenedor">
+
+
+    <!-- ================================================= -->
+    <!-- ENCABEZADO -->
+    <!-- ================================================= -->
+
+    <header>
+
+        <h1>
+            🛒 Esperancita
+        </h1>
+
+        <p>
+            Compará y armá tu compra
+        </p>
+
+    </header>
+
+
+    <!-- ================================================= -->
+    <!-- FORMULARIO -->
+    <!-- ================================================= -->
+
+    <section class="lista">
+
+        <h2>
+            ¿Qué querés comprar?
+        </h2>
+
+        <p class="ayuda">
+
+            Un producto por línea.
+            Podés indicar cantidad y presentación.
+
+        </p>
+
+
+        <form
+            action="/comparar"
+            method="POST"
+        >
+
+            <textarea
+                name="lista"
+                placeholder="Leche 1L&#10;Yerba 500g&#10;Azúcar 1kg&#10;Coca Cola 2L"
+            >{{ lista_original or '' }}</textarea>
+
+
+            <button
+                type="submit"
+            >
+
+                🛒 Comparar mi compra
+
+            </button>
+
+        </form>
+
+
+        {% if error %}
+
+            <div class="error">
+
+                {{ error }}
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- RESULTADOS -->
+    <!-- ================================================= -->
+
+    {% if resultados %}
+
+    <section class="resultados">
+
+        <div class="encabezado-resultados">
+
+            <h2>
+                🛍️ Elegí tus productos
+            </h2>
+
+            <p>
+                La opción recomendada ya está seleccionada.
+                Podés cambiarla haciendo clic en otra.
+            </p>
+
+        </div>
+
+
+        <!-- ============================================= -->
+        <!-- PRODUCTOS -->
+        <!-- ============================================= -->
+
+        {% for resultado in resultados %}
+
+        <article
+            class="producto-grupo"
+            data-producto-id="{{ resultado.id }}"
+        >
+
+
+            <!-- SOLICITUD -->
+
+            <div class="solicitud">
+
+                <span>
+                    {{ resultado.solicitud }}
+                </span>
+
+            </div>
+
+
+            <!-- OPCIONES -->
+
+            <div class="opciones">
+
+
+                {% for opcion in resultado.opciones %}
+
+                <div
+                    class="opcion
+                    {% if opcion.id == resultado.seleccionado %}
+                        seleccionada
+                    {% endif %}
+                    {% if opcion.recomendado %}
+                        recomendada
+                    {% endif %}"
+                    data-option-id="{{ opcion.id }}"
+                    data-producto-id="{{ resultado.id }}"
+                    data-precio="{{ opcion.producto.precio or 0 }}"
+                    data-supermercado="{{ opcion.supermercado }}"
+                >
+
+
+                    <!-- CHECK -->
+
+                    <div class="check">
+
+                        {% if opcion.id == resultado.seleccionado %}
+
+                            ✓
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- INFORMACIÓN -->
+
+                    <div class="opcion-info">
+
+                        <div class="opcion-supermercado">
+
+                            {{ opcion.supermercado }}
+
+                        </div>
+
+
+                        <div class="opcion-nombre">
+
+                            {{
+                                opcion.producto.nombre_original
+                                or
+                                opcion.producto.nombre
+                            }}
+
+                        </div>
+
+
+                        {% if opcion.producto.aproximacion %}
+
+                            <div class="opcion-aproximacion">
+
+                                {{
+                                    opcion.producto.aproximacion
+                                }}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if opcion.recomendado %}
+
+                            <div class="recomendado">
+
+                                🏆 Recomendado
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- PRECIO -->
+
+                    <div class="opcion-precio">
+
+                        {% if opcion.producto.precio is not none %}
+
+                            {{ dinero(
+                                opcion.producto.precio
+                            ) }}
+
+                        {% else %}
+
+                            Precio desconocido
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+                {% endfor %}
+
+
+                {% if not resultado.opciones %}
+
+                    <div class="sin-opciones">
+
+                        ⚠ No encontramos productos
+                        para esta búsqueda.
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+        </article>
+
+        {% endfor %}
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- MI COMPRA -->
+    <!-- ================================================= -->
+
+    <section class="mi-compra">
+
+        <div class="mi-compra-header">
+
+            <div>
+
+                <h2>
+                    🛒 Mi compra
+                </h2>
+
+                <p>
+                    Estas son las opciones
+                    que elegiste.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="lista-final"
+            class="lista-final"
+        >
+
+        </div>
+
+
+        <div class="resumen-final">
+
+
+            <div class="resumen-linea">
+
+                <span>
+                    Productos seleccionados
+                </span>
+
+                <strong id="cantidad-final">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="resumen-linea total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="total-final">
+                    $0,00
+                </strong>
+
+            </div>
+
+
+            <div class="resumen-ahorro">
+
+                💰 Ahorro de las comparaciones:
+
+                <strong>
+
+                    {{ dinero(
+                        ahorro_total or 0
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+</main>
+
+
+<!-- ===================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const opciones =
+            document.querySelectorAll(
+                ".opcion"
+            );
+
+
+        const listaFinal =
+            document.getElementById(
+                "lista-final"
+            );
+
+
+        const cantidadFinal =
+            document.getElementById(
+                "cantidad-final"
+            );
+
+
+        const totalFinal =
+            document.getElementById(
+                "total-final"
+            );
+
+
+        // -------------------------------------------------
+        // SELECCIONAR OPCIÓN
+        // -------------------------------------------------
+
+        opciones.forEach(
+            function (opcion) {
+
+
+                opcion.addEventListener(
+                    "click",
+                    function () {
+
+
+                        const productoId =
+                            opcion.dataset.productoId;
+
+
+                        // Quitamos selección
+                        // de ese producto
+
+                        const opcionesProducto =
+                            document.querySelectorAll(
+                                '[data-producto-id="' +
+                                productoId +
+                                '"]'
+                            );
+
+
+                        opcionesProducto.forEach(
+                            function (item) {
+
+
+                                item.classList.remove(
+                                    "seleccionada"
+                                );
+
+
+                                const check =
+                                    item.querySelector(
+                                        ".check"
+                                    );
+
+
+                                if (check) {
+
+                                    check.textContent =
+                                        "";
+
+                                }
+
+                            }
+                        );
+
+
+                        // Seleccionamos la nueva
+
+                        opcion.classList.add(
+                            "seleccionada"
+                        );
+
+
+                        const check =
+                            opcion.querySelector(
+                                ".check"
+                            );
+
+
+                        if (check) {
+
+                            check.textContent =
+                                "✓";
+
+                        }
+
+
+                        actualizarCompra();
+
+                    }
+
+                );
+
+            }
+        );
+
+
+        // -------------------------------------------------
+        // ACTUALIZAR COMPRA
+        // -------------------------------------------------
+
+        function actualizarCompra() {
+
+
+            if (!listaFinal) {
+
+                return;
+
+            }
+
+
+            const seleccionadas =
+                document.querySelectorAll(
+                    ".opcion.seleccionada"
+                );
+
+
+            listaFinal.innerHTML =
+                "";
+
+
+            let total = 0;
+
+
+            seleccionadas.forEach(
+                function (opcion) {
+
+
+                    const producto =
+                        opcion.closest(
+                            ".producto-grupo"
+                        );
+
+
+                    const solicitud =
+                        producto.querySelector(
+                            ".solicitud span"
+                        ).textContent.trim();
+
+
+                    const nombre =
+                        opcion.querySelector(
+                            ".opcion-nombre"
+                        ).textContent.trim();
+
+
+                    const supermercado =
+                        opcion.querySelector(
+                            ".opcion-supermercado"
+                        ).textContent.trim();
+
+
+                    const precio =
+                        parseFloat(
+                            opcion.dataset.precio
+                        )
+                        || 0;
+
+
+                    total += precio;
+
+
+                    const fila =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    fila.className =
+                        "fila-compra";
+
+
+                    fila.innerHTML = `
+
+                        <div>
+
+                            <strong>
+                                ${solicitud}
+                            </strong>
+
+                            <span>
+                                ${nombre}
+                            </span>
+
+                            <small>
+                                ${supermercado}
+                            </small>
+
+                        </div>
+
+                        <strong>
+                            ${formatearDinero(precio)}
+                        </strong>
+
+                    `;
+
+
+                    listaFinal.appendChild(
+                        fila
+                    );
+
+                }
+            );
+
+
+            cantidadFinal.textContent =
+                seleccionadas.length;
+
+
+            totalFinal.textContent =
+                formatearDinero(
+                    total
+                );
+
+        }
+
+
+        // -------------------------------------------------
+        // FORMATEAR DINERO
+        // -------------------------------------------------
+
+        function formatearDinero(
+            valor
+        ) {
+
+            return new Intl.NumberFormat(
+                "es-AR",
+                {
+                    style: "currency",
+                    currency: "ARS",
+                    minimumFractionDigits: 2
+                }
+            ).format(
+                valor
+            );
+
+        }
+
+
+        // -------------------------------------------------
+        // CARGAR ESTADO INICIAL
+        // -------------------------------------------------
+
+        actualizarCompra();
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
