@@ -33,7 +33,7 @@ Por ejemplo:
 Leche 1L
 Leche UAT x1L
 Leche 1000ml
-
+```
 ---
 
 pueden representar productos equivalentes aunque sus nombres no
@@ -102,17 +102,17 @@ Esperancita procesa la lista y:
                   Compra final
 
 ## ⚙️ Tecnologías utilizadas
-Backend
+### Backend
 * Python
 * Flask
 * Selenium
 * BeautifulSoup
-Procesamiento de datos
+### Procesamiento de datos
 * JSON
 * CSV
 * Normalización de texto
 * Sistema de caché
-Frontend
+### Frontend
 * HTML
 * CSS
 * JavaScript
@@ -127,27 +127,27 @@ El usuario puede ingresar múltiples productos en una única búsqueda.
 - Azúcar 1kg
 - Coca Cola 1,5L
 
-"""Comparación automática"""
+### Comparación automática
 
 Cuando un producto está disponible en ambos supermercados,
 Esperancita compara sus precios y muestra cuál resulta más conveniente.
 
-"""Productos disponibles en un solo supermercado"""
+### Productos disponibles en un solo supermercado
 
 Cuando el producto solamente aparece en uno de los supermercados,
 Esperancita lo informa sin inventar un precio comparable.
 
-"""Resultados aproximados"""
+### Resultados aproximados
 
 Cuando no existe una coincidencia exacta, el sistema puede mostrar
 productos similares para que el usuario pueda decidir.
 
-"""Selección manual"""
+### Selección manual
 
 El usuario puede cambiar la recomendación automática y elegir otra
 alternativa encontrada.
 
-"""Caché"""
+### Caché
 
 Los resultados obtenidos mediante scraping se almacenan temporalmente
 para evitar realizar búsquedas innecesarias sobre los sitios web.
@@ -155,7 +155,7 @@ para evitar realizar búsquedas innecesarias sobre los sitios web.
 Actualmente la caché está pensada para actualizar los precios cada
 24 horas.
 
-"""Lista final"""
+### Lista final
 
 Después de seleccionar los productos, Esperancita genera una sección
 con la compra final y calcula el total.
@@ -235,7 +235,7 @@ esperancita/
 
 ## 🧪 Estado del proyecto
 
-"""Versión 1.0"""
+### Versión 1.0
  Scraping de La Anónima
  Scraping de Pingüino
  Extracción de productos
@@ -291,6 +291,6 @@ Python.
 
 ## 👨‍💻 Autor
 
-"""Diman Paredes"""
+### Diman Paredes
 
 Proyecto personal / portfolio.
