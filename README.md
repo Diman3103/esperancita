@@ -68,6 +68,7 @@ Esperancita procesa la lista y:
 * Construye una lista final personalizada de compra.
 
 ## 🧠 Arquitectura
+```text
                     USUARIO
                        │
                        ▼
@@ -100,6 +101,7 @@ Esperancita procesa la lista y:
                         │
                         ▼
                   Compra final
+```
 
 ## ⚙️ Tecnologías utilizadas
 ### Backend
