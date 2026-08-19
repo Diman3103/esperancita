@@ -182,6 +182,7 @@ Y el usuario puede cambiar manualmente la opción seleccionada antes de
 armar su compra final.
 
 ## 🗂️ Estructura del proyecto
+```text
 esperancita/
 │
 ├── app.py
@@ -213,7 +214,7 @@ esperancita/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-
+```
 ## 🔧 Instalación
 - Clonar el repositorio
 
