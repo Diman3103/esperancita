@@ -34,6 +34,8 @@ Leche 1L
 Leche UAT x1L
 Leche 1000ml
 
+---
+
 pueden representar productos equivalentes aunque sus nombres no
 coincidan exactamente.
 
@@ -43,7 +45,8 @@ por volumen.
 Esperancita intenta trabajar con estas diferencias sin asumir que todos
 los supermercados presentan sus productos de la misma manera.
 
-##💡 La solución
+
+## 💡 La solución
 
 El usuario puede ingresar una lista como:
 - Leche 1L
@@ -157,7 +160,7 @@ Actualmente la caché está pensada para actualizar los precios cada
 Después de seleccionar los productos, Esperancita genera una sección
 con la compra final y calcula el total.
 
-##📊 Ejemplo
+## 📊 Ejemplo
 
 -     Una búsqueda puede producir un resultado como:
       Harina 1kg
@@ -176,7 +179,7 @@ con la compra final y calcula el total.
 Y el usuario puede cambiar manualmente la opción seleccionada antes de
 armar su compra final.
 
-##🗂️ Estructura del proyecto
+## 🗂️ Estructura del proyecto
 esperancita/
 │
 ├── app.py
@@ -230,7 +233,7 @@ esperancita/
 
       http://127.0.0.1:5000
 
-##🧪 Estado del proyecto
+## 🧪 Estado del proyecto
 
 """Versión 1.0"""
  Scraping de La Anónima
@@ -247,7 +250,7 @@ esperancita/
  Cálculo del total
  Cálculo del ahorro
 
-###⚠️ Limitaciones
+## ⚠️ Limitaciones
 
 La precisión del sistema depende de la información publicada por cada
 supermercado.
@@ -267,7 +270,7 @@ seleccionar manualmente el producto correcto.
 El sistema no intenta inventar equivalencias comerciales que no estén
 respaldadas por la información disponible en los supermercados.
 
-##🔮 Próximas mejoras
+## 🔮 Próximas mejoras
 
 Algunas mejoras posibles para futuras versiones:
 
@@ -279,14 +282,14 @@ Algunas mejoras posibles para futuras versiones:
 * Despliegue online.
 * Mejoras de interfaz y experiencia de usuario.
 
-##📌 Objetivo del proyecto
+## 📌 Objetivo del proyecto
 
 Esperancita fue desarrollado como un proyecto práctico para explorar
 scraping web, automatización, procesamiento y normalización de datos,
 caché, comparación de información y desarrollo de interfaces web con
 Python.
 
-##👨‍💻 Autor
+## 👨‍💻 Autor
 
 """Diman Paredes"""
 
